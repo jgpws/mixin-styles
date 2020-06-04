@@ -1,0 +1,1056 @@
+/*
+* Theme Name: Mixin' Styles
+* Theme URI: http://www.jasong-designs.com/2011/11/30/mixin-styles/
+* Description: Mixin' Styles is a free premium level theme. This theme makes use of rounded corners, text shadow and font embedding. Also supported are custom header, custom logo, custom menus and image thumbnails. You can change several color schemes and backgrounds from the Customizer.
+* Author: jgpws
+* Author URI: http://www.jasong-designs.com
+* License: General Public License, version 3
+* License URI: http://www.gnu.org/copyleft/gpl.html
+* Tags: two-columns, right-sidebar, custom-colors, theme-options, threaded-comments
+* Text Domain: mixin-styles
+* Version: 1.0
+*/
+
+
+/* CSS Document */
+
+
+/* @font-face requires a CSS 3 compatible browser */
+
+@font-face {
+	font-family: "Bergamo Standard";
+	src: url('custom-fonts/bergamostd-regular-webfont.eot');
+	src: url('custom-fonts/bergamostd-regular-webfont.eot?#iefix') format('embedded-opentype'), url('custom-fonts/BergamoStd-Regular.otf') format('opentype'), url('custom-fonts/bergamostd-regular-webfont.woff') format('woff'), url('custom-fonts/bergamostd-regular-webfont.ttf') format('truetype'), url('custom-fonts/bergamostd-regular-webfont.svg') format('svg');
+}
+
+
+/* Bergamo Standard bold */
+
+@font-face {
+	font-family: "Bergamo Standard";
+	font-weight: bold;
+	src: url('custom-fonts/bergamostd-bold-webfont.eot');
+	src: url('custom-fonts/bergamostd-bold-webfont.eot?#iefix') format('embedded-opentype'), url('custom-fonts/BergamoStd-Bold.otf') format('opentype');
+}
+
+@font-face {
+	font-family: Walkway;
+	font-weight: normal;
+	src: url('custom-fonts/walkway_semibold-webfont.eot');
+	src: url('custom-fonts/walkway_semibold-webfont.eot?#iefix') format('embedded-opentype'), url('custom-fonts/Walkway_SemiBold.ttf') format('truetype'), url('custom-fonts/walkway_semibold-webfont.woff') format('woff'), url('custom-fonts/walkway_semibold-webfont.svg') format('svg');
+}
+
+
+/* Walkway Bold */
+
+@font-face {
+	font-family: Walkway;
+	font-weight: bold;
+	url('custom-fonts/Walkway_Black.ttf') format('truetype');
+}
+
+
+/* Walkway Italic */
+
+@font-face {
+	font-family: Walkway;
+	font-style: italic;
+	url('custom-fonts/Walkway_Oblique_SemiBold.ttf') format('truetype');
+}
+
+:root {
+	--white: #ffffff;
+	--pale-gray: #eeeeee;
+	--light-gray: #dddddd;
+	--medium-gray: #808080;
+	--black: #000000;
+}
+
+body {
+	background-color: var(--black);
+	width: 100%;
+	font-family: Walkway, Arial, "Nimbus Sans L", Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: var(--medium-gray);
+	font-family: "Bergamo Standard", "Times New Roman", Times, serif;
+	/* CSS 3 */
+	text-shadow: 1px 1px 0 var(--light-gray);
+	font-weight: normal;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+p,
+address {
+	padding-bottom: 1em;
+}
+
+p,
+ul li,
+ol li,
+blockquote {
+	line-height: 1.3em;
+}
+
+blockquote {
+	font-style: italic;
+	background: url(images/bergamo_curlyquotes.png) top left no-repeat;
+	padding-top: 25px;
+	padding-left: 50px;
+}
+
+caption,
+strong {
+	font-weight: bold;
+}
+
+caption {
+	background-color: var(--black);
+	border-top-left-radius: 1em;
+	border-top-right-radius: 1em;
+	color: var(--white);
+	padding: 0.25em;
+}
+
+a:link,
+a:visited {
+	color: #0000cc;
+}
+
+a:hover,
+a:active {
+	color: #cc0000;
+}
+
+pre {
+	width: 75%;
+	margin: 1em auto;
+	padding: 1em;
+	overflow: auto;
+	background-color: var(--pale-gray);
+}
+
+table {
+	background-color: var(--pale-gray);
+	border: 1px solid var(--medium-gray);
+	border-collapse: collapse;
+	margin: 0 auto;
+}
+
+table th,
+table td {
+	border: 1px solid var(--medium-gray);
+	padding: 0.5em;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+form {
+	margin-bottom: 1em;
+}
+
+input {
+	background: linear-gradient(to bottom,
+		rgba(128, 128, 128, 0.75) 0%,
+		rgba(255, 255, 255, 0) 100%
+	);
+}
+
+textarea {
+	background: linear-gradient(to bottom,
+		rgba(128, 128, 128, 0.75) 0%,
+		rgba(128, 128, 128, 0.75) 12%,
+		rgba(255, 255, 255, 0) 100%
+	);
+}
+
+button,
+input,
+textarea,
+select {
+	border: 1px solid var(--black);
+	border-radius: 0.5em;
+	font-family: Walkway, Arial, "Nimbus Sans L", Helvetica, sans-serif;
+	margin: 0.5em;
+	padding: 0.5em;
+}
+
+button,
+input[type="submit"],
+input[type="reset"] {
+	background: linear-gradient( to bottom,
+		rgba(255, 255, 255, 0.75) 0%,
+		rgba(128, 128, 128, 0.75) 100%
+	);
+	font-weight: bold;
+}
+
+input:focus,
+textarea:focus {
+	background-color: var(--pale-gray);
+}
+
+
+/* wrapper */
+
+#wrapper {
+	float: left;
+	width: 100%;
+	margin: 0 auto;
+}
+
+
+/* header */
+
+#header {
+	width: 100%;
+	margin-top: 70px;
+}
+
+.custom-header {
+	margin: 1em 5% 2em;
+}
+
+.custom-header img,
+.custom-logo {
+	display: block;
+	margin: 0 auto;
+}
+
+.custom-header img {
+	border-radius: 20px;
+}
+
+.header-text,
+.logo {
+	padding: 1em 5%;
+}
+
+
+/* search box */
+
+#searchbox {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 190px;
+	height: 80px;
+	background: url(images/searchbox.svg) top no-repeat;
+	float: right;
+	text-align: center;
+}
+
+#searchbox p {
+	padding-bottom: 0.6em;
+	font-family: "Bergamo Standard", "Times New Roman", Times, serif;
+	font-weight: bold;
+}
+
+#searchform input#s:focus {
+	outline: 0;
+}
+
+.searchform input {
+	width: 170px;
+	text-align: center;
+	border: 2px solid var(--black);
+	padding: 0.25em 0.5em;
+	margin-top: 8px;
+	box-sizing: border-box;
+	font-family: Walkway, Arial, "Nimbus Sans L", Helvetica, sans-serif;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#808080+0,ffffff+100 */
+	background: rgb(128, 128, 128);
+	/* Old browsers */
+	background: -moz-linear-gradient(top, rgba(128, 128, 128, 1) 0%, rgba(255, 255, 255, 1) 100%);
+	/* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(128, 128, 128, 1) 0%, rgba(255, 255, 255, 1) 100%);
+	/* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(128, 128, 128, 1) 0%, rgba(255, 255, 255, 1) 100%);
+	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+body.admin-bar #searchbox {
+	margin-top: 32px;
+}
+
+
+/* menu */
+
+/* This section is based on the tutorial "Horizontal and Vertical CSS Menu Tutorial" */
+/* at seoconsultants.com/css/menus/tutorial/, but this was */
+/* originally written by Claire "Suzy" Campbell. */
+/* See http://ago.tanfa.co.uk/css/examples/menu/tutorial-h.html */
+
+.menu-toggle {
+	background: linear-gradient(45deg,
+			rgba(255, 255, 255, 0.25) 0%,
+			rgba(255, 255, 255, 0) 100%
+		);
+	background-color: var(--medium-gray);
+	border: transparent;
+	border-radius: 10px 10px 0 0;
+	color: var(--white);
+	display: block;
+	font-family: "Bergamo Standard", "Times New Roman", Times, serif;
+	font-size: 1em;
+	font-weight: normal;
+	height: 30px;
+	margin: 0 0 0 1.5em;
+	text-shadow: 0px 0px 0px var(--white);
+}
+
+.tabmenu {
+	background-color: var(--light-gray);
+	border-top-right-radius: 1em;
+	margin: 0 1.5em;
+	padding: 0;
+	position: relative;
+	clear: both;
+}
+
+.tabmenu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	/* adjust width for font size */
+	/*width: 12em;*/
+}
+
+.tabmenu ul a {
+	color: var(--black);
+	display: block;
+	margin: 0;
+	height: 26px;
+	text-decoration: none;
+}
+
+.tabmenu ul li {
+	font-family: "Bergamo Standard", "Times New Roman", Times, serif;
+	font-size: 1em;
+	padding: 4px 0.5em 0 0.5em;
+	white-space: nowrap;
+}
+
+.tabmenu ul li li {
+	font-family: Walkway, Arial, "Nimbus Sans L"/*Linux*/
+	, Helvetica, sans-serif;
+	font-size: 0.9em;
+}
+
+.tabmenu ul li li a {
+	color: var(--black);
+}
+
+.tabmenu li li li {
+	height: auto;
+}
+
+.tabmenu ul li.current_page_item {
+	background-color: var(--white);
+	text-shadow: 1px 1px 0px #DDD;
+}
+
+.tabmenu ul li.current_page_item a {
+	color: var(--medium-gray);
+}
+
+.tabmenu ul li.current_page_item li a {
+	color: var(--black);
+}
+
+.tabmenu ul li li.current_page_item {
+	background-color: var(--black);
+	text-shadow: 0px 0px 0px var(--light-gray);
+}
+
+.tabmenu ul li li.current_page_item a {
+	color: var(--white);
+	font-weight: bold;
+}
+
+.tabmenu ul li li.current_page_item li a {
+	color: var(--black);
+	font-weight: normal;
+}
+
+
+/* sidebar */
+
+#sidebar {
+	padding-top: 1em;
+	background-color: var(--white);
+	border-radius: 20px;
+}
+
+#sidebar h2 {
+	margin: 0;
+}
+
+#sidebar ul {
+	list-style-type: none;
+	margin-top: 1em;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+#sidebar ul ul {
+	margin-top: 0;
+	margin-left: 1em;
+	padding: 0;
+}
+
+#sidebar ul li {
+	padding-bottom: 1em;
+}
+
+#sidebar ul li li {
+	display: list-item;
+	list-style-image: url(images/bullet_image.svg);
+	line-height: 1.6em;
+	margin-left: 0.7em;
+	padding: 0;
+}
+
+#sidebar ul li li a {
+	display: block;
+}
+
+#sidebar ul.children {
+	margin-top: 0;
+}
+
+#sidebar ul.children li {
+	font-size: 1em;
+}
+
+.widgettitle {
+	margin-top: 0;
+	font-size: 1.4em;
+}
+
+#sidebar .log-in-out a {
+	display: inline;
+}
+
+
+/* main */
+
+#main {
+	display: grid;
+	grid-template-columns: 1.5em minmax(20em, 100%) 1.5em;
+	float: left;
+	width: 100%;
+}
+
+
+/* content */
+
+#content {
+	background-color: var(--white);
+	border-radius: 0 20px 20px 20px;
+	box-sizing: border-box;
+	padding: 2em;
+}
+
+#content,
+#sidebar {
+	grid-column: 2 / 3;
+	margin-bottom: 1em;
+}
+
+
+/* footer */
+
+#footer {
+	width: 90%;
+	float: left;
+	clear: both;
+	color: var(--white);
+	margin: 2em 5%;
+}
+
+#footer a {
+	color: var(--white);
+}
+
+
+/* WordPress specific tags */
+
+.alignleft {
+	float: left;
+}
+
+.alignright {
+	float: right;
+}
+
+.aligncenter {
+	display: block;
+	margin: 0 auto;
+}
+
+img.alignleft,
+.wp-caption.alignleft {
+	margin: 0 1em 1em 0;
+}
+
+img.alignright,
+.wp-caption.alignright {
+	margin: 0 0 1em 1em;
+}
+
+.screen-reader-text {
+	position: absolute;
+	top: 0;
+	left: -9999px;
+}
+
+.wp-caption {
+	max-width: 100% !important;
+}
+
+.wp-caption img {
+	margin: 0;
+}
+
+.wp-caption-text {
+	font-size: 0.8em;
+	font-weight: bold;
+	text-align: center;
+}
+
+.gallery {
+	clear: both;
+}
+
+.gallery-caption {
+	font-size: 0.8em;
+	font-weight: bold;
+}
+
+.wp-smiley {
+	margin: 0;
+	padding: 0;
+}
+
+.site-title,
+.site-subtitle {
+	color: var(--white);
+	text-shadow: 1px 2px 0 var(--medium-gray);
+	margin: 0;
+}
+
+.site-title a {
+	color: var(--white);
+	text-decoration: none;
+}
+
+.site-title {
+	font-weight: bold;
+}
+
+.site-subtitle {
+	font-weight: normal;
+	font-size: 1.2em;
+}
+
+.navigation,
+.comments-navigation {
+	text-align: center;
+	background-color: var(--medium-gray);
+	color: var(--white);
+	width: 100%;
+	padding: 0.5em;
+	margin: 0.5em auto 1em auto;
+	border-radius: 0.5em;
+	box-sizing: border-box;
+}
+
+.navigation a:visited,
+.navigation a:link,
+.comments-navigation a:visited,
+.comments-navigation a:link {
+	color: var(--white);
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.navigation a:hover,
+.navigation a:active,
+.comments-navigation a:hover,
+.comments-navigation a:active {
+	text-decoration: underline;
+}
+
+.entry-title a:visited,
+.entry-title a:link {
+	color: var(--medium-gray);
+	text-decoration: none;
+}
+
+.entry-title a:active,
+.entry-title a:hover {
+	color: var(--black);
+}
+
+.post {
+	margin: 1em 0;
+}
+
+.entry {
+	overflow-y: auto;
+	clear: both;
+}
+
+.sticky {
+	border: 6px solid var(--black);
+	padding: 1em;
+	background-color: var(--pale-gray);
+	border-radius: 1em;
+	box-sizing: border-box;
+}
+
+#author,
+#email,
+#url,
+#comment {
+	margin: 0 1em 0 1em;
+	float: right;
+}
+
+.commentlist,
+.commentlist .children {
+	list-style: none;
+}
+
+.comment {
+	margin-bottom: 1em;
+}
+
+.comment-body {
+	padding: 1em;
+}
+
+.thread-even {
+	background-color: var(--pale-gray);
+}
+
+.bypostauthor {
+	border-left: 6px solid #c0c0c0;
+	padding-left: 1em;
+}
+
+#commentform {
+	width: 75%;
+}
+
+#commentform label {
+	font-weight: bold;
+	color: var(--medium-gray);
+}
+
+#commentform p {
+	clear: both;
+}
+
+.form-allowed-tags {
+	clear: both;
+	padding-top: 1em;
+}
+
+textarea#comment {
+	width: 75%;
+}
+
+.attachment-post-thumbnail {
+	float: left;
+	margin: 0 1em 1em 0;
+}
+
+#sidebar .wp-calendar-table,
+.wp-calendar-nav {
+	width: 200px;
+}
+
+.wp-calendar-table th,
+.wp-calendar-table td {
+	padding: 0.25em;
+	text-align: center;
+}
+
+.wp-calendar-nav {
+	background-color: var(--black);
+	border-bottom-left-radius: 1em;
+	border-bottom-right-radius: 1em;
+	color: var(--white);
+	display: flex;
+	justify-content: space-around;
+	margin: 0 auto;
+	max-width: 200px;
+	padding: 0.25em;
+}
+
+.wp-calendar-nav a:link,
+.wp-calendar-nav a:visited {
+	color: var(--white);
+	font-weight: bold;
+	text-decoration: none;
+}
+
+/* Extra */
+
+.small {
+	font-size: 0.8em;
+}
+
+.clearboth {
+	clear: both;
+}
+
+.login-message {
+	font-weight: bold;
+}
+
+.edit-link {
+	padding-bottom: 1em;
+	font-weight: bold;
+}
+
+.large-text {
+	font-size: 120%;
+}
+
+.small-text {
+	font-size: 80%;
+}
+
+.hide {
+	position: absolute;
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* date stamp icons are provided by Alex at */
+/* www.euphorish.com */
+/* http://www.euphorish.com/author/alex/ */
+
+.the_date {
+	color: var(--white);
+	font-family: "Bergamo Standard", "Times New Roman", Times, serif;
+	display: block;
+	text-align: center;
+	float: left;
+	background: url(images/date-stamps/Black.png) no-repeat;
+	width: 80px;
+	margin: 0 1em 1em 0;
+}
+
+.date_m {
+	display: block;
+	font-size: 0.9em;
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.date_d {
+	color: var(--black);
+	display: block;
+	font-size: 1.4em;
+	font-weight: bold;
+	margin: 0;
+	padding: 0.5em 0 0 0;
+	text-align: center;
+}
+
+.date_y {
+	color: var(--black);
+	margin: 0;
+	padding: 0 0 0.4em 0;
+	font-weight: bold;
+}
+
+
+/* Color Scheme overrides */
+
+.blue-orange .the_date {
+	background: url(images/date-stamps/Blue.png) no-repeat;
+}
+
+.violet-yellow .the_date {
+	background: url(images/date-stamps/Purple.png) no-repeat;
+}
+
+.magenta-green .the_date {
+	background: url(images/date-stamps/Pink.png) no-repeat;
+}
+
+.orange-blue .the_date {
+	background: url(images/date-stamps/orange1.png) no-repeat;
+}
+
+.yellow-violet .the_date {
+	background: url(images/date-stamps/yellow1.png) no-repeat;
+}
+
+.khaki .the_date {
+	background: url(images/date-stamps/Brown.png) no-repeat;
+}
+
+.tan .the_date {
+	background: url(images/date-stamps/Brown2.png) no-repeat;
+}
+
+.sandstone .the_date {
+	background: url(images/date-stamps/silver-white1.png) no-repeat;
+}
+
+.yellow-violet .date_m,
+.orange-blue .date_m,
+.khaki .date_m,
+.sandstone .date_m {
+	color: #333333;
+}
+
+/* */
+
+/* Background Image overrides */
+
+body:not(.custom-background).gray-con-circles {
+	background: var(--black) url(images/bg_concircles_gray.png) repeat;
+}
+
+body:not(.custom-background).rby-con-circles {
+	background: var(--black) url(images/bg_concircles_rby.png) repeat;
+}
+
+body:not(.custom-background).ovg-con-circles {
+	background: var(--black) url(images/bg_concircles_ovg.png) repeat;
+}
+
+body:not(.custom-background).gray-spheres {
+	background: var(--black) url(images/bg_dots_gray.png) repeat;
+}
+
+body:not(.custom-background).rby-spheres {
+	background: var(--black) url(images/bg_dots_rby.png) repeat;
+}
+
+body:not(.custom-background).ovg-spheres {
+	background: var(--black) url(images/bg_dots_ovg.png) repeat;
+}
+
+/* */
+
+
+/* Media queries */
+
+
+/* Landscape mode- tablets */
+
+@media and ( min-device-width: 48em) and ( orientation:landscape) {
+	#content,
+	#sidebar {
+		/*margin: 0 5% 1em 5%;*/
+		width: 100%;
+	}
+	#footer {
+		width: 90%;
+		margin: 2em 5%;
+	}
+}
+
+
+/* Tablets */
+
+@media ( min-width: 37.5em) {
+	/* small tablets = ~600px */
+	#sidebar ul li {
+		display: inline-block;
+		margin: 0 1%;
+		vertical-align: top;
+		width: 47%;
+	}
+}
+
+@media ( min-width: 48em) {
+	/* large tablets = ~ 768px */
+	#content,
+	#sidebar {
+		/*margin: 0 2% 1em 2%;*/
+	}
+
+	#footer {
+		width: 96%;
+		margin: 2em 2%;
+	}
+
+	.custom-header {
+		margin: 1em 2% 2em;
+	}
+
+	.menu-toggle {
+		position: absolute;
+		clip: rect(1px, 1px, 1px, 1px);
+	}
+
+	.tabmenu {
+		width: 94%;
+		border-top-right-radius: 0;
+	}
+
+	.tabmenu ul {
+		float: left;
+		height: 30px;
+	}
+
+	.tabmenu ul a {
+		color: var(--white);
+	}
+
+	.tabmenu ul li {
+		background: linear-gradient(45deg,
+			rgba(255, 255, 255, 0.25) 0%,
+			rgba(255, 255, 255, 0) 100%
+		);
+		background-color: var(--medium-gray);
+		float: left;
+		position: relative;
+		/* CSS 3 */
+		text-shadow: 0px 0px 0px #FFF;
+		border-radius: 10px 10px 0 0;
+	}
+
+	.tabmenu ul li li {
+		background: none;
+		border-radius: 0;
+		float: none;
+		font-size: 1em;
+		height: 30px;
+	}
+
+	.tabmenu ul ul,
+	.tabmenu ul li:hover ul ul,
+	.tabmenu ul ul li:hover ul ul {
+		display: none;
+	}
+
+	.tabmenu ul ul {
+		background-color: var(--light-gray);
+		border-radius: 0 1em 0 1em;
+		height: auto;
+		left: 0;
+		position: absolute;
+		z-index: 500;
+	}
+
+	.tabmenu ul .children .page_item_has_children,
+	.tabmenu ul .sub-menu .menu-item-has-children {
+		padding-right: 2em;
+	}
+
+	.tabmenu ul ul ul {
+		top: 0;
+		left: 100%;
+	}
+
+	.tabmenu .children .children,
+	.tabmenu .sub-menu .sub-menu {
+		margin-left: -1em;
+	}
+
+	.tabmenu ul li:hover ul,
+	.tabmenu ul ul li:hover ul,
+	.tabmenu ul ul ul li:hover ul {
+		display: block;
+	}
+
+	.comments-navigation {
+		float: left;
+	}
+
+	.comments-navigation .navleft {
+		float: left;
+	}
+
+	.comments-navigation .navright {
+		float: right;
+	}
+
+	#respond {
+		clear: both;
+	}
+
+	#sidebar ul li {
+		margin: 0 0.5%;
+		width: 31.5%;
+	}
+
+	#sidebar ul li li {
+		margin: 0;
+		width: 100%;
+	}
+}
+
+
+/* Desktops */
+
+@media ( min-width: 64em) {
+	/* desktop = ~1024px */
+	#header {
+		margin-top: 0;
+	}
+
+	.header-text,
+	.logo {
+		padding: 1em 25% 1em 2%;
+	}
+
+	#main {
+		grid-template-columns: 1.5em auto 1em minmax(232px, 25%) 1.5em;
+	}
+
+	.tabmenu {
+		width: 68%;
+		margin: 0 30% 0 1.5em;
+	}
+
+	#sidebar {
+		grid-column: 4 / 5;
+	}
+
+	#sidebar ul li {
+		width: 100%;
+		display: block;
+	}
+}
+
+@media ( min-width: 85.375em) {
+	/* large desktop = ~1366px+ */
+	#main {
+		grid-template-columns: 1.5em auto 1em minmax(232px, 15%) 1.5em;
+	}
+
+	.page-title {
+		margin: 0 20%;
+	}
+
+	.navigation,
+	article.page,
+	.post,
+	#comments_wrapper,
+	#respond {
+		width: 60%;
+		margin: 1em 20%;
+	}
+}

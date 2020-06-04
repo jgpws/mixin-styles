@@ -1,0 +1,24 @@
+/* Custom backgrounds */
+.concircles-rby {
+background: url(../images/bg_concircles_rby.png) transparent;
+}
+
+.concircles-ovg {
+background: url(../images/bg_concircles_ovg.png) transparent;
+}
+
+.concircles-gray {
+background: url(../images/bg_concircles_gray.png) transparent;
+}
+
+.dots-rby {
+background: url(../images/bg_dots_rby.png) transparent;
+}
+
+.dots-ovg {
+background: url(../images/bg_dots_ovg.png) transparent;
+}
+
+.dots-gray {
+background: url(../images/bg_dots_gray.png) transparent;
+}

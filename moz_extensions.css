@@ -1,0 +1,29 @@
+/* Mozilla extensions for Firefox */
+input, textarea {
+-moz-border-radius: 0.5em;
+}
+
+.tabmenu ul li {
+-moz-border-radius: 10px 10px 0 0;
+}
+
+.tabmenu ul li li {
+-moz-border-radius: 0;
+}
+
+#sidebar {
+-moz-border-radius: 20px;
+}
+
+#content {
+-moz-border-radius: 0 20px 20px 20px;
+}
+
+.navigation {
+-moz-border-radius: 0.5em;
+}
+
+.sticky {
+-moz-border-radius: 1em;
+}
+
