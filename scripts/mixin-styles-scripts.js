@@ -6,9 +6,33 @@
 	var menuButton = $( '.menu-toggle' );
 	var menu = $( '.tabmenu' );
 
+	function addSubmenuButtons() {
+		var customSubMenuLink = $( '.tabmenu .menu-item-has-children > a' );
+		var subMenuLink = $( '.tabmenu .page_item_has_children > a' );
+
+		customSubMenuLink.after( '<button class="submenu-toggle"><span class="dashicons dashicons-arrow-down"></span></button>' );
+		subMenuLink.after( '<button class="submenu-toggle"><span class="dashicons dashicons-arrow-down"></span></button>' );
+	}
+
 	function toggleHideClass() {
+		var customSubMenuButton = $( '.tabmenu .menu-item-has-children .submenu-toggle' );
+		var subMenuButton = $( '.tabmenu .page_item_has_children .submenu-toggle' );
+		var customSubMenu = $( '.tabmenu .sub-menu' );
+		var subMenu = $( '.tabmenu .children' );
+
+		customSubMenu.addClass( 'hide' );
+		subMenu.addClass( 'hide' );
+
 		menuButton.on( 'click', function () {
 			menu.toggleClass( 'hide' );
+		} );
+
+		customSubMenuButton.on( 'click', function () {
+			$( this ).next( customSubMenu ).toggleClass( 'hide' );
+		} );
+
+		subMenuButton.on( 'click', function () {
+			$( this ).next( subMenu ).toggleClass( 'hide' );
 		} );
 	}
 
@@ -22,6 +46,7 @@
 		}
 	}
 
+	addSubmenuButtons();
 	toggleHideClass();
 	hideShowMenu();
 

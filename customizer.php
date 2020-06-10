@@ -7,19 +7,6 @@ function mixin_styles_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
 
-	/* Implement Selective Refresh for the above items */
-	if( isset( $wp_customize->selective_refresh ) ) {
-		$wp_customize->selective_refresh->add_partial( 'blogname', array(
-			'selector' => '.site-title a',
-			'render_callback' => 'mixin_styles_partial_blogname',
-		) );
-
-		$wp_customize->selective_refresh->add_partial( 'blogdescription', array(
-			'selector' => '.site-subtitle',
-			'render_callback' => 'mixin_styles_partial_blogdescription',
-		) );
-	}
-
 	function mixin_styles_partial_blogname() {
 		bloginfo( 'name' );
 	}
@@ -28,6 +15,7 @@ function mixin_styles_customize_register( $wp_customize ) {
 		bloginfo( 'description' );
 	}
 
+	/* Colors */
 	$wp_customize->add_setting( 'mixin_styles_color_schemes', array(
 		'default' => 'default',
 		'sanitize_callback' => 'mixin_styles_sanitize_color_schemes',
@@ -41,6 +29,7 @@ function mixin_styles_customize_register( $wp_customize ) {
 		'priority' => 5,
 	) );
 
+	/* Background Image */
 	$wp_customize->get_control( 'background_image' )->label = esc_html__( 'Custom Background Image', 'mixin-styles' );
 
 	$wp_customize->add_setting( 'mixin_styles_backgrounds', array(
@@ -56,8 +45,101 @@ function mixin_styles_customize_register( $wp_customize ) {
 		'choices' => mixin_styles_get_background_choices(),
 		'priority' => 5,
 	) );
+
+	/* Layout */
+	$wp_customize->add_section( 'mixin_styles_layout_section', array(
+		'title' => esc_html__( 'Layout/Theme Styling', 'mixin-styles' ),
+		'priority' => 45,
+	) );
+
+	$wp_customize->add_setting( 'mixin_styles_menu_style', array(
+		'default' => 'tabs',
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'mixin_styles_sanitize_menu_styling_choices',
+ 	) );
+
+	$wp_customize->add_control( 'mixin_styles_menu_style', array(
+		'type' => 'radio',
+		'section' => 'mixin_styles_layout_section',
+		'label' => esc_html__( 'Header Menu Style', 'mixin-styles' ),
+		'choices' => array(
+			'tabs' => esc_html__( 'Tabs', 'mixin-styles' ),
+			'wide_tab' => esc_html__( 'Wide Tab', 'mixin-styles' ),
+			'buttons' => esc_html__( 'Buttons', 'mixin-styles' ),
+		),
+	) );
+
+	$wp_customize->add_setting( 'mixin_styles_sidebar', array(
+		'default' => 'right',
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'mixin_styles_sanitize_sidebar_choices',
+	) );
+
+	$wp_customize->add_control( 'mixin_styles_sidebar', array(
+		'type' => 'radio',
+		'section' => 'mixin_styles_layout_section',
+		'label' => esc_html__( 'Sidebar Layout', 'mixin-styles' ),
+		'description' => esc_html__( 'Layout styles affect desktop widths (1024 pixels and up)', 'mixin-styles' ),
+		'choices' => array(
+			'right' => esc_html__( 'Right', 'mixin-styles' ),
+			'left' => esc_html__( 'Left', 'mixin-styles' ),
+			'bottom' => esc_html__( 'Bottom', 'mixin-styles' ),
+		)
+	) );
+
+	/* Content Options */
+	$wp_customize->add_section( 'mixin_styles_content_section', array(
+		'title' => esc_html__( 'Content Options', 'mixin-styles' ),
+		'priority' => 47,
+	) );
+
+	$wp_customize->add_setting( 'mixin_styles_thumbnail_size', array(
+		'default' => 'thumbnail',
+		'sanitize_callback' => 'mixin_styles_sanitize_tn_choices',
+	) );
+
+	$wp_customize->add_control( 'mixin_styles_thumbnail_size', array(
+		'type' => 'radio',
+		'section' => 'mixin_styles_content_section',
+		'label' => esc_html__( 'Featured Image Size', 'mixin-styles' ),
+		'choices' => array(
+			'thumbnail' => esc_html__( 'Thumbnail', 'mixin-styles' ),
+			'medium' => esc_html__( 'Medium', 'mixin-styles' ),
+			'large' => esc_html__( 'Large', 'mixin-styles' ),
+		),
+	) );
+
+	$wp_customize->add_setting( 'mixin_styles_content_length', array(
+		'default' => 'full',
+		'sanitize_callback' => 'mixin_styles_sanitize_contentlength_choices',
+	) );
+
+	$wp_customize->add_control( 'mixin_styles_content_length', array(
+		'type' => 'radio',
+		'section' => 'mixin_styles_content_section',
+		'label' => esc_html__( 'Content Length', 'mixin-styles' ),
+		'choices' => array(
+			'full' => esc_html__( 'Full Content', 'mixin-styles' ),
+			'excerpt' => esc_html__( 'Excerpt', 'mixin-styles' ),
+		),
+	) );
+
+	/* Implement Selective Refresh */
+	if( isset( $wp_customize->selective_refresh ) ) {
+		$wp_customize->selective_refresh->add_partial( 'blogname', array(
+			'selector' => '.site-title a',
+			'render_callback' => 'mixin_styles_partial_blogname',
+		) );
+
+		$wp_customize->selective_refresh->add_partial( 'blogdescription', array(
+			'selector' => '.site-subtitle',
+			'render_callback' => 'mixin_styles_partial_blogdescription',
+		) );
+	}
 }
 add_action( 'customize_register', 'mixin_styles_customize_register' );
+
+// Helper functions
 
 function mixin_styles_get_background_choices() {
 	$background_choices = array(
@@ -269,6 +351,73 @@ if ( ! function_exists( 'mixin_styles_get_color_scheme' ) ) :
 	}
 endif;
 
+function mixin_styles_switch_tn_size() {
+	$tn_size = get_theme_mod( 'mixin_styles_thumbnail_size', 'thumbnail' );
+	switch ( $tn_size ) {
+		case 'medium':
+			the_post_thumbnail( 'medium' );
+			break;
+		case 'large':
+			the_post_thumbnail( 'large' );
+			break;
+		default:
+			the_post_thumbnail( 'thumbnail' );
+			break;
+	}
+}
+
+function mixin_styles_menu_button_style() {
+	// returns class names for the button style
+	$menu_style = get_theme_mod( 'mixin_styles_menu_style', 'tabs' );
+	switch ( $menu_style ) {
+		case 'wide_tab':
+			echo 'menu-toggle--wide';
+			break;
+		case 'buttons':
+			echo 'menu-toggle--buttons';
+			break;
+		default:
+			echo 'menu-toggle--tabs';
+			break;
+	}
+}
+
+function mixin_styles_switch_headermenu_style() {
+	$menu_style = get_theme_mod( 'mixin_styles_menu_style', 'tabs' );
+	switch ( $menu_style ) {
+		case 'wide_tab':
+			wp_nav_menu( array(
+				'theme_location' => 'header-menu',
+				'container_class' => 'tabmenu tabmenu--wide',
+				'fallback_cb' => 'mixin_styles_page_menu',
+			) );
+			break;
+		case 'buttons':
+			wp_nav_menu( array(
+				'theme_location' => 'header-menu',
+				'container_class' => 'tabmenu tabmenu--buttons',
+				'fallback_cb' => 'mixin_styles_page_menu',
+			) );
+			break;
+		default:
+			wp_nav_menu( array(
+				'theme_location' => 'header-menu',
+				'container_class' => 'tabmenu tabmenu--tabs',
+				'fallback_cb' => 'mixin_styles_page_menu',
+			) );
+			break;
+	}
+}
+
+// Sanitization functions
+
+function mixin_styles_sanitize_menu_styling_choices( $input ) {
+	if ( !in_array( $input, array( 'tabs', 'wide_tab', 'buttons' ) ) ) {
+		$input = 'tabs';
+	}
+	return $input;
+}
+
 function mixin_styles_sanitize_color_schemes( $input ) {
 	$valid = mixin_styles_get_color_scheme_choices();
 
@@ -286,6 +435,27 @@ function mixin_styles_sanitize_backgrounds( $input ) {
 		$input = 'none';
 	}
 
+	return $input;
+}
+
+function mixin_styles_sanitize_sidebar_choices( $input ) {
+	if ( !in_array( $input, array( 'right', 'left', 'bottom' ) ) ) {
+		$input = 'right';
+	}
+	return $input;
+}
+
+function mixin_styles_sanitize_tn_choices( $input ) {
+	if ( !in_array( $input, array( 'thumbnail', 'medium', 'large' ) ) ) {
+		$input = 'thumbnail';
+	}
+	return $input;
+}
+
+function mixin_styles_sanitize_contentlength_choices( $input ) {
+	if ( !in_array( $input, array( 'full', 'excerpt' ) ) ) {
+		$input = 'full';
+	}
 	return $input;
 }
 
@@ -328,6 +498,8 @@ function mixin_styles_color_scheme_css() {
 add_action( 'wp_enqueue_scripts', 'mixin_styles_color_scheme_css' );
 
 function mixin_styles_frontend_color_scheme_style( $colors ) {
+	$color_scheme_option = get_theme_mod( 'mixin_styles_color_schemes', 'default' );
+
 	$colors = wp_parse_args(
 		$colors,
 		array(
@@ -383,18 +555,23 @@ function mixin_styles_frontend_color_scheme_style( $colors ) {
 	button,
 	input,
 	select,
-	textarea {
-		border-color: {$colors['background_color']};
+	textarea,
+	a.post-page-numbers {
+		border-color: {$colors['entry_link_color']};
 	}
 
 	button,
 	input[type="submit"],
-	input[type="reset"] {
+	input[type="reset"],
+	a.post-page-numbers {
 		background: linear-gradient( to bottom,
 			#ffffff 0%,
-			{$colors['button_bg_color']} 100%
-		);
+			{$colors['button_bg_color']} 100% );
 		font-weight: bold;
+	}
+
+	a.post-page-numbers {
+		color: {$colors['entry_link_color']};
 	}
 
 	input:focus,
@@ -419,7 +596,7 @@ function mixin_styles_frontend_color_scheme_style( $colors ) {
 		background-color: {$colors['tab_bg_color']};
 	}
 
-	.tabmenu {
+	.tabmenu .menu {
 		background-color: {$colors['bg_color_light']};
 	}
 
@@ -427,7 +604,8 @@ function mixin_styles_frontend_color_scheme_style( $colors ) {
 		color: {$colors['menu_link_color']};
 	}
 
-	.tabmenu ul li li.current_page_item {
+	.tabmenu .sub-menu .current_page_item,
+	.tabmenu .children .current_page_item {
 		background-color: {$colors['entry_link_color']};
 	}
 
@@ -479,20 +657,67 @@ function mixin_styles_frontend_color_scheme_style( $colors ) {
 
 	@media ( min-width: 48em) {
 		/* large tablets = ~ 768px */
-		.tabmenu ul a {
+		.tabmenu .menu {
+			background-color: transparent;
+		}
+
+		.tabmenu--wide .menu {
+			background-color: rgba(255, 255, 255, 0.12);
+		}
+
+		.tabmenu--tabs > .menu > li > a {
 			color: {$colors['menu_link_color']};
 		}
 
-		.tabmenu ul li {
+		.tabmenu--wide > .menu > li > a:hover,
+		.tabmenu--wide > .menu > li > a:focus {
+			color: {$colors['menu_link_color']};
+		}
+
+		.tabmenu--tabs > .menu > .menu-item > a,
+		.tabmenu--tabs > .menu > .page_item > a,
+		.tabmenu--wide > .menu > .menu-item > a:hover,
+		.tabmenu--wide > .menu > .page_item > a:hover {
 			background-color: {$colors['tab_bg_color']};
 		}
 
-		.tabmenu ul ul {
+		.tabmenu .sub-menu,
+		.tabmenu .children {
 			background-color: {$colors['bg_color_light']};
 		}
 	}
-
 CSS;
+
+	if (
+		$color_scheme_option == 'orange_blue' ||
+		$color_scheme_option == 'ylw_violet' ||
+	 	$color_scheme_option == 'khaki' ||
+	 	$color_scheme_option == 'tan' ||
+		$color_scheme_option == 'sandstone' ) {
+		$css .= '
+@media (min-width: 48em) {
+	.tabmenu--buttons .menu {
+		border-color: rgba(0, 0, 0, 0.25);
+	}
+
+	.tabmenu--wide > .menu > .menu-item-has-children > a + .submenu-toggle .dashicons-arrow-down,
+	.tabmenu--wide > .menu > .page_item_has_children > a + .submenu-toggle .dashicons-arrow-down,
+	.tabmenu--buttons > .menu > .menu-item-has-children > a + .submenu-toggle .dashicons-arrow-down,
+	.tabmenu--buttons > .menu > .page_item_has_children > a + .submenu-toggle .dashicons-arrow-down {
+		color: rgba(0, 0, 0, 0.75);
+	}
+
+	.tabmenu--wide > .menu > li > a,
+	.tabmenu--buttons > .menu > li > a {
+		color: #000000;
+	}
+
+	#footer,
+	#footer a {
+		color: #000000;
+	}
+}';
+	}
 
 	return $css;
 }

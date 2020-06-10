@@ -29,11 +29,16 @@
 		<section class="entry">
 		<?php // Performs a check to see if the function is available and there's also a thumbnail attached
 			if ( function_exists ('has_post_thumbnail') && has_post_thumbnail() ) {
-				the_post_thumbnail();
+				if ( is_search() ) {
+					the_post_thumbnail( 'thumbnail' );
+				} else {
+					mixin_styles_switch_tn_size(); // In customizer.php
+				}
 			} ?>
 
 		<?php
-		if( is_archive() || is_search() ) {
+		$content_length = get_theme_mod( 'mixin_styles_content_length', 'full' );
+		if( is_archive() || is_search() || $content_length == 'excerpt' ) {
 			the_excerpt();
 		} else {
 			the_content();
@@ -42,15 +47,12 @@
 	</section>
 	<!-- closes entry section -->
 	<?php the_tags( '<section class"entry-footer"><strong>' . esc_html__( 'Tags for this post:', 'mixin-styles' ) . '</strong> ', ', ', '</section>' ); ?>
-
-	<?php if( is_single() ) {
-		wp_link_pages( array(
-			'before' => '<p><strong>' . esc_html__( 'Pages:', 'mixin-styles' ) . '</strong>',
+	<?php wp_link_pages( array(
+			'before' => '<p class="pagination"><strong>' . esc_html__( 'Pages:', 'mixin-styles' ) . '</strong>',
 			'after' => '</p>',
 			'link_before' => '<span class="pagination-link">',
 			'link_after' => '</span>',
-		) );
-	} ?>
+		) ); ?>
 
 	</article>
 	<!-- closes post article -->

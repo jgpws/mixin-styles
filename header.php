@@ -49,18 +49,36 @@ can alternately be called container -->
 </div>
 
 <!-- begins menu div -->
-<button class="menu-toggle"><?php esc_html_e( 'Menu:', 'mixin-styles' ); ?></button>
-<?php wp_nav_menu( array(
-	'theme_location' => 'header-menu',
-	'container_class' => 'tabmenu',
-	'fallback_cb' => 'mixin_styles_page_menu',
-) );
+<button class="menu-toggle <?php mixin_styles_menu_button_style(); ?>"><?php esc_html_e( 'Menu:', 'mixin-styles' ); ?></button>
+<?php mixin_styles_switch_headermenu_style();
 
 // fallback page menu when no custom menu is used
 function mixin_styles_page_menu() {
-	wp_page_menu( array(
-		'menu_class' => 'tabmenu',
-	) );
+	$menu_style = get_theme_mod( 'mixin_styles_menu_style', 'tabs' );
+	switch ( $menu_style ) {
+		case 'wide_tab':
+			wp_page_menu( array(
+				'menu_class' => 'tabmenu tabmenu--wide',
+				'before' => '<ul class="menu">',
+				'after' => '</ul>',
+			) );
+			break;
+		case 'buttons':
+			wp_page_menu( array(
+				'menu_class' => 'tabmenu tabmenu--buttons',
+				'before' => '<ul class="menu">',
+				'after' => '</ul>',
+			) );
+			break;
+		default:
+			wp_page_menu( array(
+				'menu_class' => 'tabmenu tabmenu--tabs',
+				'before' => '<ul class="menu">',
+				'after' => '</ul>',
+			) );
+			break;
+	}
+
 }
 ?>
 <!-- ends menu div -->

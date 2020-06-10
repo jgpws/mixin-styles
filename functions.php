@@ -9,6 +9,7 @@ function mixin_styles_enqueue() {
 	wp_enqueue_style( 'mixin-styles-main-stylesheet', get_stylesheet_uri(), array( 'mixin-styles-basic-reset' ) );
 	wp_enqueue_style( 'mixin-styles-custom-bg', get_template_directory_uri() . '/custom-styles/custom-bg.css', array( 'mixin-styles-main-stylesheet' ) );
 	wp_enqueue_style( 'mixin-styles-extensions', get_template_directory_uri() . '/moz_extensions.css', array( 'mixin-styles-main-stylesheet' ) );
+	wp_enqueue_style( 'dashicons' );
 
 	// Scripts
 	wp_enqueue_script( 'mixin-styles-scripts', get_template_directory_uri() . '/scripts/mixin-styles-scripts.js', array( 'jquery' ), '', true );
@@ -52,7 +53,13 @@ function mixin_styles_setup() {
 
 	// Post thumbnails
 	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size(100, 100, true); // default Post Thumbnail dimensions
+	//set_post_thumbnail_size(100, 100, true); // default Post Thumbnail dimensions
+
+	// Selective Refresh
+	add_theme_support( 'customize-selective-refresh-widgets' );
+
+	// HTML5 markup
+	add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'gallery', 'caption' ) );
 
 	// Custom Header
 	$args = array(
@@ -77,24 +84,11 @@ function mixin_styles_setup() {
 }
 add_action( 'after_setup_theme', 'mixin_styles_setup' );
 
-/*if( !function_exists( '_wp_render_title_tag' ) ) {
-	function mixinstyles_render_title() { ?>
-		<title><?php wp_title( ' &laquo; ', true, 'right' ); ?></title>
-	<?php
-	}
-	add_action( 'wp_head', 'mixinstyles_render_title' );
-}
-
-function mixinstyles_filter_wp_title( $title ) {
-	return $title . esc_attr( get_bloginfo( 'name' ) );
-}
-add_filter( 'wp_title', 'mixinstyles_filter_wp_title' );
-?>*/
-
 function mixin_styles_body_classes( $classes ) {
 	// For Customizer color schemes
-	$color_scheme = get_theme_mod( 'mixin_styles_color_schemes' );
-	$background_image = get_theme_mod( 'mixin_styles_backgrounds' );
+	$color_scheme = get_theme_mod( 'mixin_styles_color_schemes', 'default' );
+	$background_image = get_theme_mod( 'mixin_styles_backgrounds', 'none' );
+	$sidebar_layout = get_theme_mod( 'mixin_styles_sidebar', 'right' );
 
 	switch( $color_scheme ) {
 		case 'blue_orange':
@@ -142,6 +136,18 @@ function mixin_styles_body_classes( $classes ) {
 		case 'ovg_spheres':
 			$classes[] = 'ovg-spheres';
 		break;
+	}
+
+	switch( $sidebar_layout ) {
+		case 'right':
+			$classes[] = 'sidebar-right';
+			break;
+		case 'left':
+			$classes[] = 'sidebar-left';
+			break;
+		case 'bottom':
+			$classes[] = 'sidebar-bottom';
+			break;
 	}
 
 	return $classes;

@@ -1,5 +1,5 @@
 ( function ( $ ) {
-	console.log('Customize Preview is loaded!')
+	//console.log('Customize Preview is loaded!')
 
 	// Update the custom theme supplied background images in real time.
 	wp.customize( 'mixin_styles_backgrounds', function( value ) {
@@ -30,7 +30,39 @@
 					$( 'body' ).removeClass( 'gray-con-circles rby-con-circles ovg-con-circles gray-spheres rby-spheres' );
 					break;
 				default:
-					return;
+					$( 'body' ).removeClass( 'gray-con-circles rby-con-circles ovg-con-circles gray_spheres rby-spheres ovg-spheres' );
+			}
+		} );
+	} );
+
+	wp.customize( 'mixin_styles_menu_style', function( value ) {
+		value.bind( function( to ) {
+			switch( to ) {
+				case 'tabs':
+					$( '.tabmenu' ).addClass( 'tabmenu--tabs' ).removeClass( 'tabmenu--wide tabmenu--buttons' );
+					break;
+				case 'wide_tab':
+					$( '.tabmenu' ).addClass( 'tabmenu--wide' ).removeClass( 'tabmenu--tabs tabmenu--buttons' );
+					break;
+				case 'buttons':
+					$( '.tabmenu' ).addClass( 'tabmenu--buttons' ).removeClass( 'tabmenu--tabs tabmenu--wide' );
+					break;
+			}
+		} );
+	} );
+
+	wp.customize( 'mixin_styles_sidebar', function( value ) {
+		value.bind( function( to ) {
+			switch( to ) {
+				case 'right':
+					$( 'body' ).addClass( 'sidebar-right' ).removeClass( 'sidebar-left sidebar-bottom' );
+					break;
+				case 'left':
+					$( 'body' ).addClass( 'sidebar-left' ).removeClass( 'sidebar-right sidebar-bottom' );
+					break;
+				case 'bottom':
+					$( 'body' ).addClass( 'sidebar-bottom' ).removeClass( 'sidebar-right sidebar-left' );
+					break;
 			}
 		} );
 	} );
