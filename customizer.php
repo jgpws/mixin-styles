@@ -382,6 +382,21 @@ function mixin_styles_menu_button_style() {
 	}
 }
 
+function mixin_styles_headermenu_container_class() {
+	$menu_style = get_theme_mod( 'mixin_styles_menu_style', 'tabs' );
+	switch ( $menu_style ) {
+		case 'wide_tab':
+			echo 'tabmenu--wide';
+			break;
+		case 'buttons':
+			echo 'tabmenu--buttons';
+			break;
+		default:
+			echo 'tabmenu--tabs';
+			break;
+	}
+}
+
 function mixin_styles_switch_headermenu_style() {
 	$menu_style = get_theme_mod( 'mixin_styles_menu_style', 'tabs' );
 	switch ( $menu_style ) {
@@ -402,7 +417,8 @@ function mixin_styles_switch_headermenu_style() {
 		default:
 			wp_nav_menu( array(
 				'theme_location' => 'header-menu',
-				'container_class' => 'tabmenu tabmenu--tabs',
+				'container' => false,
+				'items_wrap' => '<ul id="%1$s" class="%2$s" role="menubar">%3$s</ul>',
 				'fallback_cb' => 'mixin_styles_page_menu',
 			) );
 			break;
@@ -604,8 +620,10 @@ function mixin_styles_frontend_color_scheme_style( $colors ) {
 		color: {$colors['menu_link_color']};
 	}
 
-	.tabmenu .sub-menu .current_page_item,
-	.tabmenu .children .current_page_item {
+	.tabmenu .sub-menu .current_page_item a,
+	.tabmenu .children .current_page_item a,
+	.tabmenu .sub-menu a:focus,
+	.tabmenu .children a:focus {
 		background-color: {$colors['entry_link_color']};
 	}
 
@@ -665,7 +683,9 @@ function mixin_styles_frontend_color_scheme_style( $colors ) {
 			background-color: rgba(255, 255, 255, 0.12);
 		}
 
-		.tabmenu--tabs > .menu > li > a {
+		.tabmenu--tabs > .menu > li > a,
+		.tabmenu--tabs > .menu > .menu-item-has-children > a + .submenu-toggle .dashicons-arrow-down,
+		.tabmenu--tabs > .menu > .page_item_has_children > a + .submenu-toggle .dashicons-arrow-down {
 			color: {$colors['menu_link_color']};
 		}
 
@@ -678,6 +698,11 @@ function mixin_styles_frontend_color_scheme_style( $colors ) {
 		.tabmenu--tabs > .menu > .page_item > a,
 		.tabmenu--wide > .menu > .menu-item > a:hover,
 		.tabmenu--wide > .menu > .page_item > a:hover {
+			background-color: {$colors['tab_bg_color']};
+		}
+
+		.tabmenu--tabs > .menu > .menu-item-has-children > a + .submenu-toggle,
+		.tabmenu--tabs > .menu > .page_item_has_children > a + .submenu-toggle {
 			background-color: {$colors['tab_bg_color']};
 		}
 

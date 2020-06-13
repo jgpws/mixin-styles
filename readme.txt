@@ -1,17 +1,23 @@
 === Mixin' Styles ===
 
 Contributors: jgpws
-Tags: two-columns, right-sidebar, custom-colors, theme-options, threaded-comments
+Tags: two-columns, left-sidebar, right-sidebar, custom-colors, custom-background, custom-header, custom-menu, featured-images, sticky-post, theme-options, threaded-comments
 Requires at least: 4.5
 Tested up to: 5.4.1
-Stable tag: 1.1
+Stable tag: 1.1.1
 License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0-standalone.html
 
 == Description ==
 Mixin' Styles is a free premium level theme. This theme makes use of rounded corners, text shadow and font embedding. Also supported are custom header, custom logo, custom menus and image thumbnails. You can change several color schemes and backgrounds from the Customizer.
 
+== Credits ==
+* WAI-ARIA-Walker_Nav_Menu, GPLv2, https://github.com/proteusthemes/WAI-ARIA-Walker_Nav_Menu
+
 == Changelog ==
+
+= 1.1.1 June 12 2020 =
+New screenshot. Accesibility fixes for the header menu.
 
 = 1.1 June 10 2020 =
 Version 1.1 with major updates. New features include new Customizer options: three header menu styles; three featured image sizes; left, right bottom sidebars.

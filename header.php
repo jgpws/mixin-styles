@@ -49,10 +49,21 @@ can alternately be called container -->
 </div>
 
 <!-- begins menu div -->
-<button class="menu-toggle <?php mixin_styles_menu_button_style(); ?>"><?php esc_html_e( 'Menu:', 'mixin-styles' ); ?></button>
-<?php mixin_styles_switch_headermenu_style();
-
-// fallback page menu when no custom menu is used
+<button class="menu-toggle <?php mixin_styles_menu_button_style();  ?>"><?php esc_html_e( 'Menu:', 'mixin-styles' ); ?></button>
+<?php if ( has_nav_menu( 'header-menu' ) ) { ?>
+	<nav class="tabmenu <?php mixin_styles_headermenu_container_class(); ?>" role="navigation" aria-label="<?php esc_attr_e( 'Header Menu', 'mixin-styles' ); ?>">
+	<?php } ?>
+		<?php wp_nav_menu( array(
+			'theme_location' => 'header-menu',
+			'container' => false,
+			'items_wrap' => '<ul id="%1$s" class="%2$s" role="menubar">%3$s</ul>',
+			'walker' => new Aria_Walker_Nav_Menu(),
+			'fallback_cb' => 'mixin_styles_page_menu',
+		) ); ?>
+	<?php if ( has_nav_menu( 'header-menu' ) ) { ?>
+	</nav>
+<?php } ?>
+<?php // fallback page menu when no custom menu is used
 function mixin_styles_page_menu() {
 	$menu_style = get_theme_mod( 'mixin_styles_menu_style', 'tabs' );
 	switch ( $menu_style ) {
@@ -72,6 +83,7 @@ function mixin_styles_page_menu() {
 			break;
 		default:
 			wp_page_menu( array(
+				'container' => 'nav',
 				'menu_class' => 'tabmenu tabmenu--tabs',
 				'before' => '<ul class="menu">',
 				'after' => '</ul>',

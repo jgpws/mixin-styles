@@ -6,9 +6,9 @@
 * Author URI: http://www.jasong-designs.com
 * License: General Public License, version 3
 * License URI: http://www.gnu.org/copyleft/gpl.html
-* Tags: two-columns, right-sidebar, custom-colors, theme-options, threaded-comments
+* Tags: two-columns, left-sidebar, right-sidebar, custom-colors, custom-background, custom-header, custom-menu, featured-images, sticky-post, theme-options, threaded-comments
 * Text Domain: mixin-styles
-* Version: 1.1
+* Version: 1.1.1
 */
 
 
@@ -387,6 +387,13 @@ body.admin-bar #searchbox {
 	white-space: nowrap;
 }
 
+.tabmenu > .menu > .menu-item > a:focus,
+.tabmenu > .menu > .page_item > a:focus {
+	background-color: var(--white);
+	color: var(--medium-gray);
+	text-shadow: 1px 1px 0px var(--light-gray);
+}
+
 .tabmenu .menu-item a,
 .tabmenu .page_item a {
 	padding: 0.5em 1em;
@@ -397,11 +404,25 @@ body.admin-bar #searchbox {
 	padding-left: 1em;
 }
 
+.submenu-toggle {
+	background-image: none;
+	border: transparent;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
+	width: 3em;
+}
+
 .tabmenu .sub-menu .menu-item,
 .tabmenu .children .page_item {
 	font-family: Walkway, Arial, "Nimbus Sans L"/*Linux*/
 	, Helvetica, sans-serif;
 	font-size: 0.9rem;
+}
+
+.tabmenu .menu-item-has-children a {
+	display: inline-block;
 }
 
 .tabmenu > .menu > .current_page_item > a {
@@ -410,13 +431,11 @@ body.admin-bar #searchbox {
 	text-shadow: 1px 1px 0px var(--light-gray);
 }
 
-.tabmenu .sub-menu .current_page_item,
-.tabmenu .children .current_page_item {
-	background-color: var(--black);
-}
-
 .tabmenu .sub-menu .current_page_item a,
-.tabmenu .children .current_page_item a {
+.tabmenu .children .current_page_item a,
+.tabmenu .sub-menu a:focus,
+.tabmenu .children a:focus {
+	background-color: var(--black);
 	color: var(--white);
 	font-weight: bold;
 }
@@ -461,8 +480,12 @@ body.admin-bar #searchbox {
 	padding: 0;
 }
 
-#sidebar .widget li a {
+#sidebar .widget li a,
+#sidebar .log-in-out li a {
 	border-bottom: transparent;
+}
+
+#sidebar .widget li a {
 	display: block;
 }
 
@@ -1121,7 +1144,6 @@ body:not(.custom-background).ovg-spheres {
 			rgba(255, 255, 255, 0) 100%
 		);
 		background-color: var(--medium-gray);
-		text-shadow: 0px 0px 0px #FFF;
 	}
 
 	.tabmenu--buttons > .menu > .menu-item > a:hover,
@@ -1173,9 +1195,15 @@ body:not(.custom-background).ovg-spheres {
 	}
 
 	.tabmenu > .menu > .current_page_item > a,
+	.tabmenu > .menu > .current_page_item > a + .submenu-toggle,
 	.tabmenu--wide > .menu > .current_page_item > a:hover,
 	.tabmenu--buttons > .menu > .current_page_item > a:hover {
-		background-color: var(--white);
+		background-color: var(--white) !important;
+		color: var(--medium-gray);
+	}
+
+	.tabmenu > .menu > .current_page_item > a + .submenu-toggle .dashicons-arrow-down {
+		color: var(--medium-gray) !important;
 	}
 
 	.tabmenu .sub-menu a,
@@ -1197,16 +1225,6 @@ body:not(.custom-background).ovg-spheres {
 	.tabmenu .children .page_item_has_children .submenu-toggle {
 		float: right;
 		height: 30px;
-	}
-
-	.submenu-toggle {
-		background-image: none;
-		border: transparent;
-		display: inline-block;
-		margin: 0;
-		padding: 0;
-		vertical-align: middle;
-		width: 3em;
 	}
 
 	.tabmenu ul ul,

@@ -177,5 +177,7 @@ function mixin_styles_hex_to_rgb( $color ) {
 	);
 }
 
+include ( get_template_directory() . '/includes/aria-menu-walker.php' );
+
 include ( get_template_directory() . '/customizer.php' );
 //for a clean functions file :)

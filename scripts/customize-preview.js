@@ -40,12 +40,15 @@
 			switch( to ) {
 				case 'tabs':
 					$( '.tabmenu' ).addClass( 'tabmenu--tabs' ).removeClass( 'tabmenu--wide tabmenu--buttons' );
+					$( '.menu-toggle' ).addClass( 'menu-toggle--tabs' ).removeClass( 'menu-toggle--wide menu-toggle--buttons' );
 					break;
 				case 'wide_tab':
 					$( '.tabmenu' ).addClass( 'tabmenu--wide' ).removeClass( 'tabmenu--tabs tabmenu--buttons' );
+					$( '.menu-toggle' ).addClass( 'menu-toggle--wide' ).removeClass( 'menu-toggle--tabs menu-toggle--buttons' );
 					break;
 				case 'buttons':
 					$( '.tabmenu' ).addClass( 'tabmenu--buttons' ).removeClass( 'tabmenu--tabs tabmenu--wide' );
+					$( '.menu-toggle' ).addClass( 'menu-toggle--buttons' ).removeClass( 'menu-toggle--tabs menu-toggle--wide' );
 					break;
 			}
 		} );
