@@ -16,7 +16,7 @@ Mixin' Styles is a free premium level theme. This theme makes use of rounded cor
 
 == Changelog ==
 
-= 1.2 June 17 2020 =
+= 1.2 June 20 2020 =
 Gutenberg compatibility and block styling. Responsive video embed block.
 
 = 1.1.1 June 12 2020 =
