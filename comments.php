@@ -29,7 +29,9 @@ if ( have_comments() ) : ?>
 <?php else : // this is displayed if there are no comments so far ?>
 	<?php if ( comments_open() ) :
 		// If comments are open, but there are no comments.
+		echo '<div id="comments_wrapper"><p>';
 		esc_html_e( 'Be the first to comment!', 'mixin-styles' );
+		echo '</p></div>';
 	else : // comments are closed
 		return;
 	endif;

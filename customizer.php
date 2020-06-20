@@ -558,6 +558,21 @@ function mixin_styles_frontend_color_scheme_style( $colors ) {
 		color: {$colors['split_comp_2']};
 	}
 
+	button:hover,
+	button:focus,
+	input[type="submit"]:hover,
+	input[type="submit"]:focus,
+	input[type="reset"]:hover,
+	input[type="reset"]:focus,
+	a.post-page-numbers:hover,
+	a.post-page-numbers:focus,
+	.wc-block-pagination-ellipsis:hover,
+	.wc-block-pagination-ellipsis:focus,
+	.wc-block-pagination-page:hover,
+	.wc-block-pagination-page:focus {
+		background-color: {$colors['bg_color_light']};
+	}
+
 	table,
 	pre {
 		background-color: {$colors['bg_color_pale']};
@@ -569,6 +584,8 @@ function mixin_styles_frontend_color_scheme_style( $colors ) {
 	}
 
 	button,
+	.wp-block-button__link,
+	.is-style-outline .wp-block-button__link,
 	input,
 	select,
 	textarea,
@@ -577,13 +594,14 @@ function mixin_styles_frontend_color_scheme_style( $colors ) {
 	}
 
 	button,
+	.wp-block-button__link,
+	.is-style-outline .wp-block-button__link:hover,
 	input[type="submit"],
 	input[type="reset"],
 	a.post-page-numbers {
 		background: linear-gradient( to bottom,
 			#ffffff 0%,
 			{$colors['button_bg_color']} 100% );
-		font-weight: bold;
 	}
 
 	a.post-page-numbers {
@@ -595,7 +613,7 @@ function mixin_styles_frontend_color_scheme_style( $colors ) {
 		background-color: {$colors['bg_color_pale']};
 	}
 
-	.searchform input {
+	.searchform input[type=text] {
 		background-color: {$colors['tab_bg_color']};
 		background: linear-gradient( to bottom,
 			{$colors['tab_bg_color']} 0%,
@@ -669,8 +687,19 @@ function mixin_styles_frontend_color_scheme_style( $colors ) {
 	}
 
 	.wp-calendar-nav a:link,
-	.wp-calendar-nav a:visited {
+	.wp-calendar-nav a:visited,
+	.wp-block-calendar table caption {
 		color: {$colors['text_color_alt']};
+	}
+
+	.wp-block-button__link:hover,
+	.wp-block-button__link:focus {
+		background-color: {$colors['alt_color_light']};
+	}
+
+	.wc-block-pagination-ellipsis,
+	.wc-block-pagination-page {
+		color: {$colors['menu_link_color']};
 	}
 
 	@media ( min-width: 48em) {

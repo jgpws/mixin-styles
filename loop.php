@@ -46,7 +46,7 @@
 		<br class="clearboth" />
 	</section>
 	<!-- closes entry section -->
-	<?php the_tags( '<section class"entry-footer"><strong>' . esc_html__( 'Tags for this post:', 'mixin-styles' ) . '</strong> ', ', ', '</section>' ); ?>
+	<?php the_tags( '<section class="entry-footer"><strong>' . esc_html__( 'Tags for this post:', 'mixin-styles' ) . '</strong> ', ', ', '</section>' ); ?>
 	<?php wp_link_pages( array(
 			'before' => '<p class="pagination"><strong>' . esc_html__( 'Pages:', 'mixin-styles' ) . '</strong>',
 			'after' => '</p>',

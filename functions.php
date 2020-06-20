@@ -61,6 +61,10 @@ function mixin_styles_setup() {
 	// HTML5 markup
 	add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'gallery', 'caption' ) );
 
+	// Gutenberg/Block editor
+	add_theme_support( 'align-wide' );
+	add_theme_support( 'responsive-embeds' );
+
 	// Custom Header
 	$args = array(
 		'default-text-color' => 'ffffff',
