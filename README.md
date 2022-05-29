@@ -6,13 +6,8 @@ Mixin' Styles is a free premium level theme. This theme makes use of rounded cor
 
 ## Installation Instructions
 
-### From Here (GitHub)
 * Click the **Clone or download** button, then from the dropdown, **Download ZIP**
 * This will likely download to a Downloads or My Downloads folder on your computer
-
-### From Jason G. Designs (official version)
-* Go to the theme's homepage
-* Click the Download Mixin' Styles button
 
 ### Upload to WordPress
 * Login to WordPress
